@@ -116,9 +116,13 @@ public class SubscribeOnHUDDraw {
 	public void AuroraInfo(RenderGameOverlayEvent.Text event) {
 		EntityPlayer player = MainHelper.getPlayerCl();
 		String name = player.getCommandSenderName();
-		String info = ", Your Aurora point is ";
-		int point = RewriteHelper.getAuroraPoint(player);
-	    event.left.add(0, name + info + point + ".");
+        if (RewriteHelper.hasSkill(player, RewriteHelper.AuroraCognition.id)) {
+        	String info = ", Your Aurora point is ";
+        	int point = RewriteHelper.getAuroraPoint(player);
+        	event.left.add(0, name + info + point + ".");
+        } else {
+        	event.left.add(0, "Please press K button.");
+        }
 	}
 
 }
